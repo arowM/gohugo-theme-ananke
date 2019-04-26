@@ -21,7 +21,15 @@
       {{/* Hugo uses Go's date formatting is set by example. Here are two formats */}}
       <time class="f6 mv4 dib tracked" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
         {{- .Date.Format "January 2, 2006" -}}
-      </time>      
+      </time>
+      {{ if isset .Params "author" }}
+      {{ if isset .Params "author_href" }}
+          {{ $author := $.Params.author }}
+          {{ $author_href := $.Params.author_href }}
+          <div class="author">Author: <a target="_blank" href="{{$author_href}}">{{$author}}</a></span>
+      {{ end }}
+      {{ end }}
+
       {{/*  
           Show "reading time" and "word count" but only if one of the following are true:
           1) A global config `params` value is set `show_reading_time = true`
